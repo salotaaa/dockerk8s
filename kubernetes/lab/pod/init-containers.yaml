@@ -11,6 +11,11 @@ spec:
   - name: init-service
     image: busybox:1.28
     command: 
+    - args:
+    - /bin/sh
+    - -c
+    - wget -O index.html https://google.com/index.html
+    image: busybox
     - sh
     - -c
     - until nslookup myservice.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for myservice; sleep 2; done
