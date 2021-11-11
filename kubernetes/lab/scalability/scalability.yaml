@@ -17,14 +17,18 @@ spec:
       imagePullSecrets:
         - name: regcred
       containers:
-      - image: brainupgrade/weather:monolith
+      - image: tutum/hello-world
         name: weather
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         resources:
           limits:
-            cpu: "100m"
-            memory: "512Mi"
+            cpu: "10m"
+            memory: "10Mi"
+          requests:
+            cpu: "10m"
+            memory: "10Mi"
+            
 # monolith
 # scale up / down  kubectl scale --replicas=2 deploy weather
 # autoscale  kubectl autoscale --min 2 --max 5 deploy weather   (metrics-server should be running in the cluster)
